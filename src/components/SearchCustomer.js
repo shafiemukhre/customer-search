@@ -1,11 +1,17 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CustomerList from './CustomerList'
 import List from '../List';
 
 function SearchCustomer() {
   const [value, setValue] = useState('');
+  const [data, setData] = useState(List)
 
-  const data = List.filter(customer => customer.name.startsWith(value) || customer.location.startsWith(value));
+  useEffect(() => {
+    const filteredData = List.filter(customer => customer.name.toLowerCase().startsWith(value) || customer.location.toLowerCase().startsWith(value));
+    console.log('filteredData = ', filteredData);
+    setData(prevData => [...filteredData]);
+  }, [value])
+  
 
   return (
     <>
