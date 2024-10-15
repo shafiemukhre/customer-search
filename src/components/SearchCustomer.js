@@ -7,9 +7,8 @@ function SearchCustomer() {
   const [data, setData] = useState(List)
 
   useEffect(() => {
-    const filteredData = List.filter(customer => customer.name.toLowerCase().startsWith(value) || customer.location.toLowerCase().startsWith(value));
-    console.log('filteredData = ', filteredData);
-    setData(prevData => [...filteredData]);
+    const filteredData = List.filter(customer => customer.name.startsWith(value) || customer.location.startsWith(value));
+    setData(filteredData);
   }, [value])
   
 
