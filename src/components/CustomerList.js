@@ -1,6 +1,10 @@
 import React from 'react'
 
 function CustomerList({customers}) {
+  if (customers.length === 0) {
+    return <p>No Results Found!</p>
+  }
+
   return (
     <div className='layout-column align-items-center justify-content-start'>
         <p data-testid='no-results'>No Results Found!</p>
@@ -16,13 +20,15 @@ function CustomerList({customers}) {
                     </tr>
                     </thead>
                     <tbody data-testid='searched-customers'>
-                            <tr>
-                                <td>Jeremy Clarke</td>
-                                <td>21</td>
-                                <td>Seattle</td>
-                                <td>Male</td>
-                                <td>$120,000</td>
-                            </tr>
+                      {customers.map((customer, index) => (
+                        <tr key={index}>
+                          <td>{customer.name}</td>
+                          <td>{customer.age}</td>
+                          <td>{customer.location}</td>
+                          <td>{customer.gender}</td>
+                          <td>{customer.income}</td>
+                        </tr>                 
+                      ))}
                     </tbody>
                 </table>
             </div>

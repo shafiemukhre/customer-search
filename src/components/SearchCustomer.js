@@ -4,12 +4,22 @@ import List from '../List';
 
 function SearchCustomer() {
   const [value, setValue] = useState('');
+
+  const data = List.filter(customer => customer.name.startsWith(value) || customer.location.startsWith(value));
+
   return (
     <>
     <div className='layout-row align-items-center justify-content-center mt-30'>
-        <input className='large mx-20 w-20' data-testid='search-input' value={value} onChange={(e) => setValue(e.target.value)} placeholder='Enter search term (Eg: Phil)' />
+        <input 
+          className='large mx-20 w-20'
+          data-testid='search-input'
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder='Enter search term (Eg: Phil)'
+        />
     </div>
-    <CustomerList />
+    <CustomerList customers={data}/>
     </>
   )
 }
